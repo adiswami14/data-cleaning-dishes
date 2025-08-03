@@ -1,11 +1,15 @@
 import pandas as pd
 
 # Load the CSV file
-df = pd.read_csv("data/Dish.csv")  # Replace with your actual filename
+df = pd.read_csv("Dishes.csv")  # Replace with your actual filename
 
 # Convert year columns to numeric, coercing errors to NaN
 df['first_appeared'] = pd.to_numeric(df['first_appeared'], errors='coerce')
 df['last_appeared'] = pd.to_numeric(df['last_appeared'], errors='coerce')
+df['menus_appeared'] = pd.to_numeric(df['menus_appeared'], errors='coerce')
+df['times_appeared'] = pd.to_numeric(df['times_appeared'], errors='coerce')
+df['lowest_price'] = pd.to_numeric(df['lowest_price'], errors='coerce')
+df['highest_price'] = pd.to_numeric(df['highest_price'], errors='coerce')
 
 # Define the valid range
 valid_start = 1840
@@ -17,5 +21,8 @@ filtered_df = df[
     (df['last_appeared'].between(valid_start, valid_end))
 ]
 
+filtered_df = df[df['menus_appeared'] <= df['times_appeared']]
+filtered_df = df[df['lowest_price'] <= df['highest_price']]
+
 # Save the cleaned data to a new CSV
-filtered_df.to_csv("intermediate_data/Dish_clean_dates.csv", index=False)
+filtered_df.to_csv("Dish_clean_dates.csv", index=False)

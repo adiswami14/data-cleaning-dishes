@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-dish = pd.read_csv('Dish.csv')
+dish = pd.read_csv('Dish_clean_dates.csv')
 # for ic violations we will be checking 4 things
 # Same name doesn't show up twice
 # first_appeared <= last_appeared
@@ -18,7 +18,7 @@ def ic_check_name_violation(df):
             violations += 1
     return violations
 
-# print(ic_check_name_violation(dish)) 28053
+print(ic_check_name_violation(dish)) 
 
 def ic_time_appearance_violation(df):
     violations = 0
@@ -27,7 +27,7 @@ def ic_time_appearance_violation(df):
             violations += 1
     return violations
 
-# print(ic_time_appearance_violation(dish)) 6
+print(ic_time_appearance_violation(dish))
 
 def ic_price_violation(df):
     violations = 0
@@ -36,7 +36,7 @@ def ic_price_violation(df):
             violations += 1
     return violations
 
-# print(ic_price_violation(dish)) 0
+print(ic_price_violation(dish))
 
 def ic_menu_appearance_violation(df):
     violations = 0
@@ -45,4 +45,4 @@ def ic_menu_appearance_violation(df):
             violations += 1
     return violations
 
-# print(ic_menu_appearance_violation(dish)) 8274
+print(ic_menu_appearance_violation(dish))
