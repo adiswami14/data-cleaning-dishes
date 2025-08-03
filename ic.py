@@ -12,8 +12,8 @@ def ic_check_name_violation(df):
     nameset = set()
     violations = 0
     for _, row in df.iterrows():
-        if row['name'].lower() not in nameset:
-            nameset.add(row['name'].lower())
+        if str(row['name']).lower() not in nameset:
+            nameset.add(str(row['name']).lower())
         else:
             violations += 1
     return violations
